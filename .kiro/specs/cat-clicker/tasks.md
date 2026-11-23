@@ -61,17 +61,17 @@ Build a self-contained `index.html` file implementing the Cat Clicker SPA. The f
 - [x] 6. Checkpoint — verify pure logic before wiring DOM
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 7. Implement view rendering functions
-  - [-] 7.1 Write `renderCounter()`
+- [x] 7. Implement view rendering functions
+  - [x] 7.1 Write `renderCounter()`
     - Read `clickCount` and write it as an integer string (no decimal) into `#counter-display`
     - _Requirements: 4.1, 4.2, 4.3_
 
-  - [-] 7.2 Write `renderReaction()`
+  - [x] 7.2 Write `renderReaction()`
     - Write `currentReaction.emoji + " " + currentReaction.label` into `#reaction-display` (empty string when `currentReaction` is null)
     - Remove any active `.anim-*` class from `#cat-image`, then re-add `currentReaction.animationClass` on the next `requestAnimationFrame` to restart the CSS animation
     - _Requirements: 2.3, 3.3, 3.4_
 
-  - [-] 7.3 Write `renderReset()`
+  - [x] 7.3 Write `renderReset()`
     - Clear `#reaction-display` text content
     - Remove any active `.anim-*` class from `#cat-image`
     - _Requirements: 5.3, 5.4_
@@ -82,19 +82,19 @@ Build a self-contained `index.html` file implementing the Cat Clicker SPA. The f
     - `renderReset` clears `#reaction-display` and removes all animation classes
     - _Requirements: 2.3, 4.3, 5.3, 5.4_
 
-- [ ] 8. Implement event handlers and wire everything on `DOMContentLoaded`
-  - [~] 8.1 Write `handleCatClick` and `handleResetClick` event handlers
+- [x] 8. Implement event handlers and wire everything on `DOMContentLoaded`
+  - [x] 8.1 Write `handleCatClick` and `handleResetClick` event handlers
     - `handleCatClick(event)`: call `incrementCounter()`, then `renderCounter()`, then `renderReaction()`
     - `handleResetClick(event)`: call `resetState()`, then `renderCounter()`, then `renderReset()`
     - _Requirements: 2.1, 2.2, 2.3, 5.1, 5.2, 5.3, 5.4_
 
-  - [~] 8.2 Attach event listeners inside a `DOMContentLoaded` handler
+  - [x] 8.2 Attach event listeners inside a `DOMContentLoaded` handler
     - Bind `handleCatClick` to `click` on `#cat-image`
     - Bind `handleResetClick` to `click` on `#reset-button`
     - Call `renderCounter()` on load to show initial count of 0
     - _Requirements: 2.1, 4.1, 5.1_
 
-- [~] 9. Final checkpoint — full integration verification
+- [x] 9. Final checkpoint — full integration verification
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes

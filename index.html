@@ -165,6 +165,86 @@
         currentReaction   = null;
         lastReactionIndex = -1;
       }
+
+      // ── View: rendering functions ───────────────────────────────────────────
+
+      /**
+       * Writes clickCount as an integer string into #counter-display.
+       * Requirements: 4.1, 4.2, 4.3
+       */
+      function renderCounter() {
+        document.getElementById('counter-display').textContent = String(clickCount);
+      }
+
+      /**
+       * Updates #reaction-display with the current reaction's emoji and label.
+       * Removes any active anim-* class from #cat-image, then re-adds the
+       * reaction's animationClass on the next requestAnimationFrame so the
+       * CSS animation restarts cleanly.
+       * Requirements: 2.3, 3.3, 3.4
+       */
+      function renderReaction() {
+        const reactionDisplay = document.getElementById('reaction-display');
+        const catImage        = document.getElementById('cat-image');
+
+        if (currentReaction === null) {
+          reactionDisplay.textContent = '';
+          return;
+        }
+
+        reactionDisplay.textContent = currentReaction.emoji + ' ' + currentReaction.label;
+
+        // Remove all existing anim-* classes
+        const animClasses = Array.from(catImage.classList).filter(c => c.startsWith('anim-'));
+        animClasses.forEach(c => catImage.classList.remove(c));
+
+        // Re-add on the next frame to force a reflow and restart the animation
+        requestAnimationFrame(() => {
+          catImage.classList.add(currentReaction.animationClass);
+        });
+      }
+
+      /**
+       * Clears #reaction-display and removes any active anim-* class from #cat-image.
+       * Requirements: 5.3, 5.4
+       */
+      function renderReset() {
+        document.getElementById('reaction-display').textContent = '';
+        const catImage = document.getElementById('cat-image');
+        const animClasses = Array.from(catImage.classList).filter(c => c.startsWith('anim-'));
+        animClasses.forEach(c => catImage.classList.remove(c));
+      }
+
+      // ── Controller: event handlers ──────────────────────────────────────────
+
+      /**
+       * Handles a click on #cat-image: increments the counter, then re-renders
+       * the counter and the reaction display.
+       * Requirements: 2.1, 2.2, 2.3
+       */
+      function handleCatClick(event) {
+        incrementCounter();
+        renderCounter();
+        renderReaction();
+      }
+
+      /**
+       * Handles a click on #reset-button: resets all state, then re-renders
+       * the counter and clears the reaction display.
+       * Requirements: 5.1, 5.2, 5.3, 5.4
+       */
+      function handleResetClick(event) {
+        resetState();
+        renderCounter();
+        renderReset();
+      }
+
+      // ── Bootstrap: wire up event listeners once the DOM is ready ───────────
+      document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('cat-image').addEventListener('click', handleCatClick);
+        document.getElementById('reset-button').addEventListener('click', handleResetClick);
+        renderCounter();
+      });
     </script>
   </body>
 </html>
