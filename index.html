@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat Clicker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* anim-bounce: Surprised 😲 — translateY up and back */
+      @keyframes bounce-anim {
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(-16px); }
+      }
+      .anim-bounce { animation: bounce-anim 0.4s ease; animation-fill-mode: none; }
+
+      /* anim-shake: Annoyed 😾 — translateX side to side */
+      @keyframes shake-anim {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-8px); }
+        40%       { transform: translateX(8px); }
+        60%       { transform: translateX(-6px); }
+        80%       { transform: translateX(6px); }
+      }
+      .anim-shake { animation: shake-anim 0.4s ease; animation-fill-mode: none; }
+
+      /* anim-sway: Sleepy 😴 — gentle rotate left/right */
+      @keyframes sway-anim {
+        0%, 100% { transform: rotate(0deg); }
+        25%       { transform: rotate(-8deg); }
+        75%       { transform: rotate(8deg); }
+      }
+      .anim-sway { animation: sway-anim 0.5s ease-in-out; animation-fill-mode: none; }
+
+      /* anim-spin: Happy 😺 — full 360deg rotate */
+      @keyframes spin-anim {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .anim-spin { animation: spin-anim 0.4s linear; animation-fill-mode: none; }
+
+      /* anim-wobble: Scared 🙀 — erratic scale/rotate combo */
+      @keyframes wobble-anim {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        20%       { transform: scale(1.1) rotate(-6deg); }
+        40%       { transform: scale(0.9) rotate(6deg); }
+        60%       { transform: scale(1.1) rotate(-4deg); }
+        80%       { transform: scale(0.95) rotate(4deg); }
+      }
+      .anim-wobble { animation: wobble-anim 0.5s ease; animation-fill-mode: none; }
+
+      /* anim-pulse: Smug 😏 — scale up slightly then back */
+      @keyframes pulse-anim {
+        0%, 100% { transform: scale(1); }
+        50%       { transform: scale(1.15); }
+      }
+      .anim-pulse { animation: pulse-anim 0.4s ease-in-out; animation-fill-mode: none; }
+
+      /* anim-tilt: Confused 😕 — small rotation tilt */
+      @keyframes tilt-anim {
+        0%, 100% { transform: rotate(0deg); }
+        30%       { transform: rotate(12deg); }
+        70%       { transform: rotate(-12deg); }
+      }
+      .anim-tilt { animation: tilt-anim 0.4s ease; animation-fill-mode: none; }
+
+      /* anim-zoom: Excited 🐱 — scale zoom in/out */
+      @keyframes zoom-anim {
+        0%, 100% { transform: scale(1); }
+        40%       { transform: scale(1.25); }
+        70%       { transform: scale(0.9); }
+      }
+      .anim-zoom { animation: zoom-anim 0.45s ease; animation-fill-mode: none; }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+
+    <div id="app" class="flex flex-col items-center gap-6 w-full max-w-sm md:max-w-[480px] p-6 bg-white rounded-2xl shadow-md">
+
+      <!-- Reaction display: shows emoji + label after each click -->
+      <div id="reaction-display" class="text-2xl font-semibold text-gray-700 min-h-[2rem] text-center">
+      </div>
+
+      <!-- Cat image: the main click target -->
+      <img
+        id="cat-image"
+        src="https://cataas.com/cat"
+        alt="A cat"
+        class="w-48 h-48 object-cover rounded-xl cursor-pointer select-none shadow"
+      />
+
+      <!-- Click counter display -->
+      <div class="text-center">
+        <span class="text-sm text-gray-500 uppercase tracking-wide">Clicks</span>
+        <div id="counter-display" class="text-4xl font-bold text-gray-800">0</div>
+      </div>
+
+      <!-- Reset button -->
+      <button
+        id="reset-button"
+        class="px-6 py-2 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-medium rounded-lg transition-colors cursor-pointer"
+      >
+        Reset
+      </button>
+
+    </div>
+
+    <script>
+      // ── Model: state variables ──────────────────────────────────────────────
+      let clickCount        = 0;
+      let currentReaction   = null;   // Reaction | null
+      let lastReactionIndex = -1;     // index into reactionPool
+
+      // ── Model: reaction pool (8 entries) ───────────────────────────────────
+      const reactionPool = [
+        { label: 'Surprised', emoji: '😲', animationClass: 'anim-bounce'  },
+        { label: 'Annoyed',   emoji: '😾', animationClass: 'anim-shake'   },
+        { label: 'Sleepy',    emoji: '😴', animationClass: 'anim-sway'    },
+        { label: 'Happy',     emoji: '😺', animationClass: 'anim-spin'    },
+        { label: 'Scared',    emoji: '🙀', animationClass: 'anim-wobble'  },
+        { label: 'Smug',      emoji: '😏', animationClass: 'anim-pulse'   },
+        { label: 'Confused',  emoji: '😕', animationClass: 'anim-tilt'    },
+        { label: 'Excited',   emoji: '🐱', animationClass: 'anim-zoom'    },
+      ];
+
+      // ── Pure function: pickReaction ─────────────────────────────────────────
+      /**
+       * Selects a random Reaction from pool, excluding the entry at lastIndex
+       * when pool.length >= 2 (no-repeat rule).
+       *
+       * @param {Reaction[]} pool      - Array of Reaction objects to pick from
+       * @param {number}     lastIndex - Index of the most recently used reaction (-1 if none)
+       * @returns {Reaction|null}      - The selected Reaction object, or null if pool is empty
+       */
+      function pickReaction(pool, lastIndex) {
+        if (!pool || pool.length === 0) return null;
+        if (pool.length === 1) return pool[0];
+
+        // Build candidate index list, excluding lastIndex
+        const candidates = [];
+        for (let i = 0; i < pool.length; i++) {
+          if (i !== lastIndex) candidates.push(i);
+        }
+
+        const chosenIndex = candidates[Math.floor(Math.random() * candidates.length)];
+        return pool[chosenIndex];
+      }
+
+      // ── Model: state mutation functions ────────────────────────────────────
+
+      /**
+       * Increments clickCount by 1, picks a new reaction (excluding the last),
+       * and updates currentReaction and lastReactionIndex.
+       */
+      function incrementCounter() {
+        clickCount += 1;
+        currentReaction   = pickReaction(reactionPool, lastReactionIndex);
+        lastReactionIndex = reactionPool.indexOf(currentReaction);
+      }
+
+      /**
+       * Resets all state to initial values.
+       */
+      function resetState() {
+        clickCount        = 0;
+        currentReaction   = null;
+        lastReactionIndex = -1;
+      }
+    </script>
+  </body>
+</html>

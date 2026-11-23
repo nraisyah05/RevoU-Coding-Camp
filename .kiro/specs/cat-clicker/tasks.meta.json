@@ -1,0 +1,192 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Create `index.html` with HTML skeleton and Tailwind CDN": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439453283
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439458856
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439497991
+      }
+    ],
+    "2.1 Define all 8 `@keyframes` blocks and matching `.anim-*` classes": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439453602
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439503052
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439533052
+      }
+    ],
+    "3.1 Declare state variables and define `reactionPool`": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439453746
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439537069
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439559589
+      }
+    ],
+    "4.1 Write `pickReaction(pool, lastIndex)` with no-repeat logic": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439453919
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439567592
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439613813
+      }
+    ],
+    "5.1 Write `incrementCounter()` and `resetState()`": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439454024
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439618537
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439649802
+      }
+    ],
+    "6. Checkpoint — verify pure logic before wiring DOM": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439454120
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439654224
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439681835
+      }
+    ],
+    "7.1 Write `renderCounter()`": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439454213
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439685541
+      }
+    ],
+    "7.2 Write `renderReaction()`": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439454308
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439688704
+      }
+    ],
+    "7.3 Write `renderReset()`": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439454404
+      },
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439692800
+      }
+    ],
+    "8.1 Write `handleCatClick` and `handleResetClick` event handlers": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439454489
+      }
+    ],
+    "8.2 Attach event listeners inside a `DOMContentLoaded` handler": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439454574
+      }
+    ],
+    "9. Final checkpoint — full integration verification": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439454660
+      }
+    ],
+    "2. Add CSS keyframe animations in `<style>` block": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439533254
+      }
+    ],
+    "3. Implement the JavaScript model — state variables and `reactionPool`": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439559838
+      }
+    ],
+    "4. Implement `pickReaction` pure function": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439614411
+      }
+    ],
+    "5. Implement state mutation functions": [
+      {
+        "executionId": "571ad497-925b-497d-a10a-d26d3cc179d0",
+        "chatSessionId": "sess_9f60ae81-6382-48a8-acde-ff1c1b67d8a6",
+        "timestamp": 1795439650403
+      }
+    ]
+  }
+}
